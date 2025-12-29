@@ -142,10 +142,19 @@ paypal.Buttons({
         actions.order.create({
             purchase_units: [{ amount: { value: '249.00' } }]
         }),
-    onApprove: (data, actions) =>
-        actions.order.capture().then(details =>
-            alert('Thank you ' + details.payer.name.given_name + '!')
-        )
+   onApprove: (data, actions) =>
+    actions.order.capture().then(details => {
+
+        gtag('event', 'purchase', {
+            transaction_id: data.orderID,
+            value: 299.00, // change to your upsell price
+            currency: 'EUR',
+            item_name: 'AI Marketing Blueprint PRO'
+        });
+
+        alert('Thank you ' + details.payer.name.given_name + '!');
+    })
+
 }).render('#paypal-upsell-button');
 
 </body>
