@@ -147,16 +147,6 @@ paypal.Buttons({
             alert('Thank you ' + details.payer.name.given_name + '!')
         )
 }).render('#paypal-upsell-button');
-</script>
-<div id="paypal-button-container"></div>
-<script>
-function trackUpsellClick() {
-  gtag('event', 'upsell_click', {
-    event_category: 'funnel',
-    event_label: 'upsell_page'
-  });
-}
-</script>
 
 </body>
 </html>
