@@ -340,10 +340,10 @@
         Before you purchase the standard blueprint,<br>
         you can upgrade to a more tailored version built specifically for your industry.
     </p>
-    <a href="upsell.html" class="button" onclick="goToUpsell(event)">
-    See Personalized Upgrade →
-        <a href="upsell.html" class="button" onclick="trackUpsellClick()">Upgrade to Pro</a>
+    <a href="upsell.html" class="button" onclick="trackUpsellClick()">Upgrade to Pro</a>
 
+    See Personalized Upgrade →
+       
 </a>
 
     <p style="font-size:0.9rem; color:#777; margin-top:10px;">
@@ -449,6 +449,14 @@ function goToUpsell(event) {
         originalAlert(message);
     };
 })();
+</script>
+<script>
+function trackUpsellClick() {
+  gtag('event', 'upsell_click', {
+    event_category: 'funnel',
+    event_label: 'upsell_page'
+  });
+}
 </script>
 
 </body>
