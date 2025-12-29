@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Marketing Blueprint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
+
+    <style>
+        :root {
+            --bg-main: #f6f3ef;
+            --bg-card: #ffffff;
+            --accent: #5f7a6b;
+            --accent-dark: #3f5248;
+            --text-main: #2b2b2b;
+            --text-muted: #555;
+            --border-soft: #e4e1dc;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 50px 24px;
+            background-color: var(--bg-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 12px;
+        }
+
+        h1, h2, h3 { color: #1f1f1f; }
+        h1 { font-size: 2.4rem; }
+        h2 {
+            margin-top: 60px;
+            font-size: 1.9rem;
+            border-bottom: 2px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 30px; font-size: 1.2rem; }
+
+        p { margin: 15px 0; color: var(--text-muted); }
+        ul { margin-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        .hero { text-align: center; padding: 40px 20px 20px; }
+        .cta { margin-top: 30px; }
+
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .button:hover { background-color: var(--accent-dark); }
+
+        .price-box {
+            background-color: #f0f1ef;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-soft);
+            font-family: inherit;
+        }
+
+        button {
+            padding: 14px 28px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .legal {
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 2px solid var(--border-soft);
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        /* 🐾 Blueprint Buddy */
+        .buddy {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: float 3s ease-in-out infinite;
+            z-index: 999;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        .buddy-bubble {
+            position: fixed;
+            right: 95px;
+            bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.85rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            max-width: 200px;
+            display: none;
+            z-index: 999;
+        }
+.explain-box {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f0f1ef;
+    border-radius: 14px;
+    border: 1px solid var(--border-soft);
+}
+
+.explain-box h2 {
+    margin-top: 0;
+    border-bottom: none;
+    font-size: 1.6rem;
+}
+
+.explain-highlight {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    background: rgba(95, 122, 107, 0.08);
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.explain-box ul {
+    margin: 20px 0 10px 20px;
+}
+
+.explain-note {
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+/* Loading Screen */
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(246, 243, 239, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2000;
+    text-align: center;
+}
+
+#loadingScreen p {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Minimal loader */
+.loader {
+    width: 42px;
+    height: 42px;
+    border: 3px solid #ddd;
+    border-top: 3px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>AI Marketing Blueprint</h1>
+        <p>Stop guessing your marketing.<br>Get a clear, actionable strategy built for your business.</p>
+        <div class="cta">
+            <a href="#get-started" class="button">Get Your Marketing Blueprint</a>
+        </div>
+    </section>
+<!-- MARKETING BLUEPRINT EXPLAINER -->
+<section class="explain-box">
+    <h2>What is a Marketing Blueprint?</h2>
+
+    <p class="explain-highlight">
+        A marketing blueprint is a <strong>clear, structured plan</strong> that shows you
+        <strong>who to target, what to say, and where to market</strong> — without guessing.
+    </p>
+
+    <p>
+        Instead of random posting, expensive agencies, or trial-and-error,
+        you receive a step-by-step strategy designed specifically for your business.
+    </p>
+
+    <ul>
+        <li>✔ Who your ideal customer really is</li>
+        <li>✔ What message actually resonates</li>
+        <li>✔ Which platforms make sense (and which don’t)</li>
+        <li>✔ What content to create and why</li>
+    </ul>
+
+    <p class="explain-note">
+        Think of it as a <strong>roadmap</strong>:  
+        you decide how fast to go — but you always know the direction.
+    </p>
+</section>
+
+
+    <!-- PROBLEM -->
+    <section>
+        <h2>The Problem</h2>
+        <p>Most small businesses don’t fail because their product is bad.</p>
+        <p>They fail because their marketing is unclear, inconsistent, or overwhelming.</p>
+        <ul>
+            <li>“I don’t know what to post”</li>
+            <li>“Marketing feels random”</li>
+            <li>“Agencies are too expensive”</li>
+        </ul>
+    </section>
+
+    <!-- SOLUTION -->
+    <section>
+        <h2>The Solution</h2>
+        <p><strong>AI Marketing Blueprint</strong> gives you clarity and a simple plan you can follow.</p>
+        <p>Custom-built using AI, guided by real marketing logic.</p>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section>
+        <h2>What You Get</h2>
+        <h3>· Business & Market Positioning</h3>
+        <p>Clear positioning and messaging.</p>
+        <h3>· Ideal Customer Breakdown</h3>
+        <p>Understand your customer.</p>
+        <h3>· Core Marketing Message</h3>
+        <p>Know what to say.</p>
+        <h3>· Platform Recommendations</h3>
+        <p>Where to market.</p>
+        <h3>· 30-Day Content Plan</h3>
+        <p>What to post.</p>
+        <h3>· Content Ideas & Hooks</h3>
+        <p>Ready-to-use ideas.</p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section>
+        <h2>How It Works</h2>
+        <ul>
+            <li><strong>Step 1:</strong> Questionnaire</li>
+            <li><strong>Step 2:</strong> Strategy created</li>
+            <li><strong>Step 3:</strong> Delivered</li>
+        </ul>
+    </section>
+
+    <!-- PRICING -->
+    <section id="get-started">
+        <h2>Pricing</h2>
+        <div class="price-box">
+            <p class="price">€79</p>
+            <p>One-time payment · Clear · No subscriptions</p>
+<!-- UPSELL PRE-STEP -->
+<div class="price-box" style="margin-bottom: 20px; background:#ffffff;">
+    <h3>Want a More Personalized Strategy?</h3>
+    <p>
+        Before you purchase the standard blueprint,<br>
+        you can upgrade to a more tailored version built specifically for your industry.
+    </p>
+    <a href="upsell.html" class="button" onclick="goToUpsell(event)">
+    See Personalized Upgrade →
+</a>
+
+    <p style="font-size:0.9rem; color:#777; margin-top:10px;">
+        (Optional · Recommended for serious businesses)
+    </p>
+</div>
+
+            <div id="paypal-button-container"></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section>
+        <h2>Contact / Questions</h2>
+        <form action="https://formspree.io/f/mregoolq" method="POST">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- LEGAL -->
+    <section class="legal" id="privacy">
+        <h2>Privacy Policy</h2>
+        <p>Your data is only used to deliver this service.</p>
+        <h2 id="terms">Terms of Service</h2>
+        <p>No guaranteed success. All sales final.</p>
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>Marketing guidance only.</p>
+    </section>
+
+</div>
+
+<div class="footer">
+    © 2025 AI Marketing Blueprint |
+    <a href="#privacy">Privacy</a> |
+    <a href="#terms">Terms</a> |
+    <a href="#disclaimer">Disclaimer</a>
+</div>
+
+<!-- 🐾 Buddy -->
+<div class="buddy" onclick="toggleBuddy()">🐶</div>
+<div class="buddy-bubble" id="buddyBubble">
+    Hi! 👋<br>Need clarity instead of chaos?<br>I’ve got you.
+</div>
+
+<script>
+paypal.Buttons({
+    createOrder: (data, actions) =>
+        actions.order.create({
+            purchase_units: [{ amount: { value: '79.00' } }]
+        }),
+    onApprove: (data, actions) =>
+        actions.order.capture().then(details =>
+            alert('Thank you ' + details.payer.name.given_name + '!')
+        )
+}).render('#paypal-button-container');
+
+function toggleBuddy() {
+    const bubble = document.getElementById('buddyBubble');
+    bubble.style.display = bubble.style.display === 'block' ? 'none' : 'block';
+}
+
+</script>
+<script>
+function goToUpsell(event) {
+    event.preventDefault();
+    const screen = document.getElementById('loadingScreen');
+    screen.style.display = 'flex';
+
+    setTimeout(() => {
+        window.location.href = "upsell.html";
+    }, 1200);
+}
+
+</script>
+
+<!-- Loading Screen -->
+<div id="loadingScreen">
+    <div class="loader"></div>
+    <p>Preparing your personalized upgrade…</p>
+</div>
+<script>
+/* Reuse loader after PayPal success */
+(function () {
+    const originalAlert = window.alert;
+
+    window.alert = function (message) {
+        if (message && message.toLowerCase().includes('thank you')) {
+            const screen = document.getElementById('loadingScreen');
+            if (screen) {
+                screen.style.display = 'flex';
+
+                setTimeout(() => {
+                    screen.style.display = 'none';
+                    originalAlert(message);
+                }, 1200);
+
+                return;
+            }
+        }
+        originalAlert(message);
+    };
+})();
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Marketing Blueprint — Pro Upgrade</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f6f3ef;
+            color: #2b2b2b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 50px 24px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        h1 { font-size: 2.4rem; text-align:center; }
+        h2 {
+            margin-top: 60px;
+            font-size: 1.9rem;
+            border-bottom: 2px solid #e4e1dc;
+            padding-bottom: 10px;
+        }
+
+        h3 { margin-top: 30px; }
+        p { color:#555; }
+
+        .hero { text-align:center; padding:30px 20px; }
+
+        .button {
+            display:inline-block;
+            padding:14px 30px;
+            background:#5f7a6b;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:600;
+        }
+
+        .price-box {
+            background:#f0f1ef;
+            padding:30px;
+            border-radius:12px;
+            text-align:center;
+            margin-top:30px;
+        }
+
+        .price {
+            font-size:2.4rem;
+            font-weight:700;
+            color:#3f5248;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>AI Marketing Blueprint — Pro</h1>
+        <p>
+            For businesses that don’t want guesswork,<br>
+            but a strategy built specifically for their market.
+        </p>
+    </section>
+
+    <!-- PROBLEM -->
+    <section>
+        <h2>Why the Standard Blueprint Isn’t Enough for Everyone</h2>
+        <p>
+            The €79 blueprint gives clarity — but some businesses need more precision.
+        </p>
+        <ul>
+            <li>Your market is competitive</li>
+            <li>You’ve already tried marketing before</li>
+            <li>You want faster, clearer decisions</li>
+        </ul>
+    </section>
+
+    <!-- SOLUTION -->
+    <section>
+        <h2>The Pro Upgrade</h2>
+        <p>
+            This version goes deeper and adapts the strategy
+            specifically to your business, industry, and positioning.
+        </p>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section>
+        <h2>What’s Included in Pro</h2>
+
+        <h3>· Everything in the Standard Blueprint</h3>
+        <p>All core strategy elements included.</p>
+
+        <h3>· Industry-Specific Positioning</h3>
+        <p>Messaging tailored to your exact market.</p>
+
+        <h3>· Competitor Awareness Snapshot</h3>
+        <p>Understand how to stand out clearly.</p>
+
+        <h3>· 90-Day Content Direction</h3>
+        <p>Longer-term clarity and consistency.</p>
+
+        <h3>· Priority Creation</h3>
+        <p>Delivered faster than the standard version.</p>
+    </section>
+
+    <!-- PRICING -->
+    <section>
+        <h2>Upgrade Price</h2>
+        <div class="price-box">
+            <p class="price">€249</p>
+            <p>One-time · Personalized · No subscriptions</p>
+            <div id="paypal-upsell-button"></div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px;">
+            <a href="index.html">← No thanks, continue with €79 version</a>
+        </p>
+    </section>
+
+</div>
+
+<script>
+paypal.Buttons({
+    createOrder: (data, actions) =>
+        actions.order.create({
+            purchase_units: [{ amount: { value: '249.00' } }]
+        }),
+    onApprove: (data, actions) =>
+        actions.order.capture().then(details =>
+            alert('Thank you ' + details.payer.name.given_name + '!')
+        )
+}).render('#paypal-upsell-button');
+</script>
+
+</body>
+</html>
