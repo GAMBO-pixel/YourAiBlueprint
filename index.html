@@ -229,6 +229,14 @@
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0R0XQ66NKQ');
+</script>
 
     </style>
 </head>
@@ -334,6 +342,8 @@
     </p>
     <a href="upsell.html" class="button" onclick="goToUpsell(event)">
     See Personalized Upgrade →
+        <a href="upsell.html" class="button" onclick="trackUpsellClick()">Upgrade to Pro</a>
+
 </a>
 
     <p style="font-size:0.9rem; color:#777; margin-top:10px;">
