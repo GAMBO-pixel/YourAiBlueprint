@@ -1,1 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketing Blueprint Questionnaire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #f6f3ef;
+            --bg-card: #ffffff;
+            --accent: #5f7a6b;
+            --accent-dark: #3f5248;
+            --text-main: #2b2b2b;
+            --text-muted: #555;
+            --border-soft: #e4e1dc;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 50px 24px;
+            background-color: var(--bg-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 12px;
+        }
+
+        h1, h2 {
+            color: #1f1f1f;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            margin-top: 50px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--border-soft);
+            padding-bottom: 8px;
+        }
+
+        p {
+            color: var(--text-muted);
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid var(--border-soft);
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 40px;
+            padding: 16px 30px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .hint {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Marketing Blueprint Questionnaire</h1>
+    <p style="text-align:center;">
+        This takes about <strong>10 minutes</strong>.<br>
+        Your answers help us build a strategy that actually fits your business.
+    </p>
+
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <!-- SECTION 1 -->
+        <h2>1. Business Basics</h2>
+
+        <label>Business name</label>
+        <input type="text" name="business_name" required>
+
+        <label>Website (if any)</label>
+        <input type="url" name="website">
+
+        <label>Industry / niche</label>
+        <input type="text" name="industry" required>
+
+        <label>Business stage</label>
+        <select name="stage">
+            <option>Just starting</option>
+            <option>Early traction</option>
+            <option>Established</option>
+        </select>
+
+        <!-- SECTION 2 -->
+        <h2>2. Your Audience & Offer</h2>
+
+        <label>Who is your ideal customer?</label>
+        <input type="text" name="ideal_customer">
+
+        <label>What main problem do you solve?</label>
+        <textarea name="problem" rows="3"></textarea>
+
+        <label>What makes your offer different?</label>
+        <textarea name="differentiator" rows="3"></textarea>
+
+        <!-- SECTION 3 -->
+        <h2>3. Marketing Today</h2>
+
+        <label>Where do you currently market?</label>
+        <input type="text" name="platforms" placeholder="Instagram, website, email, etc.">
+
+        <label>What feels hardest about marketing right now?</label>
+        <textarea name="marketing_challenge" rows="3"></textarea>
+
+        <label>How confident are you in your marketing?</label>
+        <select name="confidence">
+            <option>Very low</option>
+            <option>Somewhat confident</option>
+            <option>Confident</option>
+        </select>
+
+        <!-- SECTION 4 -->
+        <h2>4. Goals & Direction</h2>
+
+        <label>Main marketing goal</label>
+        <input type="text" name="goal">
+
+        <label>Anything else we should know?</label>
+        <textarea name="extra_notes" rows="4"></textarea>
+
+        <button type="submit">Submit & Get Started</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
 
