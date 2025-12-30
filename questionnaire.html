@@ -164,15 +164,7 @@
         <label>Main marketing goal</label>
         <input type="text" name="goal">
 
-        <label>Anything else we should know?</label>
-        <textarea name="extra_notes" rows="4"></textarea>
-
-        <button type="submit">Submit & Get Started</button>
-
-    </form>
-
-</div>
-    <div id="pro-section" style="display:none;">
+        <div id="pro-section" style="display:none;">
 
     <h2>Pro-Level Questions</h2>
 
@@ -187,6 +179,15 @@
 
 </div>
 
+        <label>Anything else we should know?</label>
+        <textarea name="extra_notes" rows="4"></textarea>
+
+        <button type="submit">Submit & Get Started</button>
+
+    </form>
+
+</div>
+    
 <script>
 const params = new URLSearchParams(window.location.search);
 const plan = params.get('plan') || 'standard';
