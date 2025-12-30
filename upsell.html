@@ -200,18 +200,21 @@ paypal.Buttons({
         actions.order.create({
             purchase_units:[{ amount:{ value:'249.00' } }]
         }),
-    onApprove:(data,actions)=>
-        actions.order.capture().then(details=>{
-            if (typeof gtag === 'function') {
-                gtag('event','purchase',{
-                    transaction_id:data.orderID,
-                    value:249.00,
-                    currency:'EUR',
-                    item_name:'AI Marketing Blueprint PRO'
-                });
-            }
-            alert('Thank you '+details.payer.name.given_name+'!');
-        })
+    onApprove: (data, actions) =>
+    actions.order.capture().then(details => {
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'purchase', {
+                transaction_id: data.orderID,
+                value: 249.00,
+                currency: 'EUR',
+                item_name: 'AI Marketing Blueprint PRO'
+            });
+        }
+
+        window.location.href = "thank-you.html";
+    })
+
 }).render('#paypal-button-container');
 
 function toggleBuddy(){
