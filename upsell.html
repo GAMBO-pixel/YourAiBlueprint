@@ -124,13 +124,16 @@
         <div class="price-box">
             <p class="price">€249</p>
             <p>One-time · Personalized · No subscriptions</p>
-            <div id="paypal-button-container"></div>
+            <div id="paypal-upsell-button"></div>
         </div>
+<div id="paypal-button-container"></div>
 
         <p style="text-align:center; margin-top:20px;">
             <a href="index.html">← No thanks, continue with €79 version</a>
         </p>
     </section>
+
+</div>
 
 <script>
 paypal.Buttons({
@@ -138,22 +141,20 @@ paypal.Buttons({
         actions.order.create({
             purchase_units: [{ amount: { value: '249.00' } }]
         }),
-    onApprove: (data, actions) =>
-        actions.order.capture().then(details => {
-            // Optional: Google Analytics event
-            if (typeof gtag === 'function') {
-                gtag('event', 'purchase', {
-                    transaction_id: data.orderID,
-                    value: 249.00,
-                    currency: 'EUR',
-                    item_name: 'AI Marketing Blueprint PRO'
-                });
-            }
+   onApprove: (data, actions) =>
+    actions.order.capture().then(details => {
 
-            alert('Thank you ' + details.payer.name.given_name + ' for upgrading!');
-        })
+        gtag('event', 'purchase', {
+            transaction_id: data.orderID,
+            value: 299.00, // change to your upsell price
+            currency: 'EUR',
+            item_name: 'AI Marketing Blueprint PRO'
+        });
+
+        alert('Thank you ' + details.payer.name.given_name + '!');
+    })
+
 }).render('#paypal-button-container');
-</script>
 
 </body>
 </html>
