@@ -397,7 +397,7 @@ paypal.Buttons({
             purchase_units: [{ amount: { value: '79.00' } }]
         }),
    onApprove: (data, actions) =>
-    actions.order.capture().then(details => {
+    actions.order.capture().then(() => {
 
         gtag('event', 'purchase', {
             transaction_id: data.orderID,
@@ -406,7 +406,7 @@ paypal.Buttons({
             item_name: 'AI Marketing Blueprint'
         });
 
-        alert('Thank you ' + details.payer.name.given_name + '!');
+        window.location.href = "thank-you.html";
     })
 
 }).render('#paypal-button-container');
