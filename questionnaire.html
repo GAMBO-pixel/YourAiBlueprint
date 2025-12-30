@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Marketing Blueprint Questionnaire</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,10 +102,11 @@
 
 <div class="container">
 
-    <h1>Marketing Blueprint Questionnaire</h1>
-    <p style="text-align:center;">
-        This takes about <strong>10 minutes</strong>.<br>
-        Your answers help us build a strategy that actually fits your business.
+   <h1>Marketing Blueprint Questionnaire</h1>
+<p>
+    You purchased the <strong><span id="plan-label"></span></strong> version.
+    This will take about 10 minutes.
+     Your answers help us build a strategy that actually fits your business.
     </p>
 
     <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
@@ -170,6 +172,19 @@
     </form>
 
 </div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const plan = params.get('plan') || 'standard';
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (plan === 'pro') {
+        document.getElementById('pro-section').style.display = 'block';
+        document.getElementById('plan-label').innerText = 'PRO';
+    } else {
+        document.getElementById('plan-label').innerText = 'STANDARD';
+    }
+});
+</script>
 
 </body>
 </html>
