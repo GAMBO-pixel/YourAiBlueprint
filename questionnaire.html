@@ -9,15 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --bg-main: #f6f3ef;
-            --bg-card: #ffffff;
-            --accent: #5f7a6b;
-            --accent-dark: #3f5248;
-            --text-main: #2b2b2b;
-            --text-muted: #555;
-            --border-soft: #e4e1dc;
-        }
+        /* 🌸 Questionnaire Theme Override */
+:root {
+    --bg-main: #fbf1f3;        /* creamy blush */
+    --bg-card: #ffffff;
+    --accent: #d88c9a;        /* soft rose */
+    --accent-dark: #b76a78;
+    --text-main: #2b2b2b;
+    --text-muted: #6b5b5e;
+    --border-soft: #f0d7dc;
+}
 
         body {
             margin: 0;
@@ -74,21 +75,28 @@
         textarea {
             resize: vertical;
         }
+input, textarea {
+    background-color: #fff7f8;
+    border: 1px solid var(--border-soft);
+}
 
-        button {
-            margin-top: 40px;
-            padding: 16px 30px;
-            background-color: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(216, 140, 154, 0.25);
+}
 
-        button:hover {
-            background-color: var(--accent-dark);
-        }
+       button {
+    background-color: var(--accent);
+    color: white;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
 
         .hint {
             font-size: 0.9rem;
